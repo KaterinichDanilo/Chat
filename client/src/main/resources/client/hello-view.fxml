@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.HelloController">
+    <stylesheets> <URL value="@../style.css"/> </stylesheets>
+    <HBox fx:id="authPanel">
+        <Button text="Auth" onAction="#tryAuth"/>
+        <TextField fx:id="loginField" promptText="Input login..." HBox.hgrow="ALWAYS"/>
+        <PasswordField  fx:id="passwordField" promptText="Input password..." HBox.hgrow="ALWAYS"/>
+    </HBox>
+    <TextArea fx:id="textArea" editable="false" VBox.vgrow="ALWAYS"/>
+    <AnchorPane fx:id="messagePanel" visible="false" managed="false">
+        <Button text="Send" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="30" minWidth="40" minHeight="20" onAction="#sendMessage"/>
+        <TextField fx:id="textField" promptText="Input text..." onAction="#sendMessage" AnchorPane.leftAnchor="20" AnchorPane.bottomAnchor="30" minWidth="700"/>
+    </AnchorPane>
+</VBox>
+
