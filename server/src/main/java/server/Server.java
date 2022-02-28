@@ -62,15 +62,39 @@ public class Server {
 
     }
 
+    public void broadcastClientList(){
+        StringBuilder stringBuilder = new StringBuilder("/clientList");
+
+        for (ClientHandler c:clients) {
+            stringBuilder.append(" " + c.getNickname());
+        }
+        String msg = stringBuilder.toString();
+        for (ClientHandler c:clients) {
+            c.sendMsg(msg);
+        }
+
+    }
+
     public void subscribe(ClientHandler clientHandler){
         clients.add(clientHandler);
+        broadcastClientList();
     }
 
     public void unsubscribe(ClientHandler clientHandler){
         clients.remove(clientHandler);
+        broadcastClientList();
     }
 
     public AuthService getAuthService() {
         return authService;
+    }
+
+    public boolean isLogin(String login){
+        for (ClientHandler client : clients) {
+            if (client.getNickname().equals(login)){
+                return true;
+            }
+        }
+        return false;
     }
 }
